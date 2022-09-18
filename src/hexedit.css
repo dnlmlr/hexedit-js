@@ -1,0 +1,173 @@
+:root {
+    --span-spacing: 0.25ch;
+
+    --clr-background: #eeeeee;
+
+    --clr-headers: #333333;
+    --clr-offsets: #555555;
+    --clr-hexview: #222222;
+    --clr-textview: #222222;
+    --clr-textview-non-printable: #222222;
+
+    --clr-borders: #222222;
+    --clr-mid-border: #777777;
+
+    --clr-selected: #222222;
+    --clr-hover: #222222;
+    --clr-selected-bg: #7885e2;
+    --clr-hover-bg: #bac2fd;
+
+    --clr-cursor-selection-bg: #7884e2bb;
+    --clr-cursor-selection: #222222;
+}
+
+.hexedit {
+    font-family: monospace;
+    font-size: 16px;
+    white-space: nowrap;
+
+    display: grid;
+    grid-template-columns: min-content min-content min-content;
+
+    width: min-content;
+
+    line-height: normal;
+    cursor: default;
+
+    background-color: var(--clr-background);
+}
+
+.hexedit:focus {
+    outline: none;
+}
+
+.hexedit-column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    margin: 0;
+    border: 1px solid var(--clr-borders);
+}
+
+.hexedit span {
+    padding: 0 var(--span-spacing);
+    min-width: 1ch;
+    white-space: pre;
+}
+
+.hexedit span:nth-child(16n)::after {
+    content: "\A";
+}
+
+.hexedit span::selection {
+    background-color: var(--clr-cursor-selection-bg);
+    color: var(--clr-cursor-selection);
+}
+
+
+
+/* HEXVIEW */
+.hexview-header {
+    font-weight: bold;
+    border-bottom: 1px solid var(--clr-borders);
+    padding: 3px;
+
+    color: var(--clr-headers);
+}
+
+.hexview {
+    width: calc(16 * 2ch + 16 * 2 * var(--span-spacing));
+    padding: 3px;
+
+    color: var(--clr-hexview);
+}
+
+.hexview span:nth-child(8n),
+.hexview-header span:nth-child(8n) {
+    border-right: 1px solid var(--clr-mid-border);
+}
+
+.hexview span:nth-child(16n),
+.hexview-header span:nth-child(16n) {
+    border-right: none;
+}
+
+
+
+/* TEXTVIEW */
+.textview-header {
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid var(--clr-borders);
+    padding: 3px;
+
+    color: var(--clr-headers);
+}
+
+.textview {
+    width: calc(16 * 1ch + 16 * 2 * var(--span-spacing));
+    padding: 3px;
+
+    color: var(--clr-textview);
+}
+
+.textview .non-printable {
+    color: var(--clr-textview-non-printable);
+}
+
+
+/* OFFSETS */
+.offsets span::after {
+    content: "\A";
+}
+
+.offsets-header {
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+
+    border-bottom: 1px solid var(--clr-borders);
+    padding: 3px;
+
+    color: var(--clr-headers);
+}
+
+.offsets {
+    width: calc(8 * 1ch + 2 * var(--span-spacing));
+    padding: 3px;
+    align-self: flex-end;
+
+    color: var(--clr-offsets);
+}
+
+
+
+/* EMPHASIS */
+.hexedit .selected {
+    background-color: var(--clr-selected-bg);
+    color: var(--clr-selected);
+}
+
+.hexedit .selected-editing {
+    text-decoration: underline;
+}
+
+.hover {
+    background-color: var(--clr-hover-bg);
+    color: var(--clr-hover);
+}
+
+
+
+.hexedit-popup {
+    position: absolute;
+    z-index: 1;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    display: none;
+
+    grid-template-columns: auto auto;
+}
