@@ -3,6 +3,8 @@
 
 ![Example Screenshot](gitres/img/screenshot1.png)
 
+**This is currently just an early prototype and very much work in progress**
+
 ## Features
 - Byteoffsets, hex and text panels
 - Select and edit bytes in the hex or text panel

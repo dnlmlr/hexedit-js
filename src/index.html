@@ -25,23 +25,35 @@
     </style>
 
     <script>
-        // document.addEventListener('DOMContentLoaded', () => {
-        //     const data = new Uint8Array(1024)
-        //     for (let i = 0; i < data.length; i++) data[i] = 0
+        document.addEventListener('DOMContentLoaded', () => {
+            const data = new Uint8Array(512)
+            for (let i = 0; i < data.length; i++) data[i] = 0
 
-        //     const myHexedit = new HexEditor(document.getElementById("hexedit1"))
-        //     myHexedit.data = data
-        //     myHexedit.renderDom()
-        // })
+            const myHexedit = new HexEditor(document.getElementById("hexedit1"))
+            myHexedit.data = data
+            myHexedit.renderDom()
+
+
+            document.getElementById("input-file").addEventListener("change", async e => {
+                const buffer = await e.target.files[0].arrayBuffer()
+                const data = new Uint8Array(buffer)
+
+                myHexedit.data = data
+                myHexedit.renderDom()
+            })
+        })
     </script>
 
-    <title>Document</title>
+    <title>Hexedit-JS Demo</title>
 </head>
 
 <body>
     <main>
+        <label for="input-file">Only select small files (max 100K) for now</label>
+        <br>
+        <input type="file" id="input-file" title=""/>
+
         <div id="hexedit1"></div>
-        <div id="hexedit2"></div>
     </main>
 </body>
 
